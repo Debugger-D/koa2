@@ -1,6 +1,13 @@
 // 引入mongoose库
 const mongoose = require('mongoose');
+// 引入 glob
+const glob = require('glob');
+const path = require('path');
 
+exports.initSchemas = () => {
+  // 通过glob读取schema文件夹内容
+  glob.sync(path.resolve(__dirname, './schema/', '**/*.js')).forEach(require);
+}
 // 定义数据库地址的常量
 // 更标准的可以新建一个数据配置文件，
 // 用来专门存放数据相关的配置，比如账号密码等等
